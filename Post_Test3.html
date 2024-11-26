@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Variabel dalam global scope
+        let globalVar = "Ini variabel global";
+
+        function tesScope() {
+            // Variabel dalam local scope (di dalam fungsi)
+            let localVar = "Ini variabel lokal";
+
+            console.log(globalVar); // Output: Ini variabel global
+            console.log(localVar);  // Output: Ini variabel lokal
+        }
+
+        // Memanggil fungsi tesScope
+        tesScope();
+
+        console.log(globalVar);  // Output: Ini variabel global
+        // console.log(localVar); // Error: localVar is not defined, karena localVar hanya ada di dalam fungsi tesScope
+
+    </script>
+</body>
+
+</html>

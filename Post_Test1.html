@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Contoh dengan var
+        function testVar() {
+            if (true) {
+                var a = 10;  // var memiliki function scope
+            }
+            console.log(a); // Output: 10 (karena var dapat diakses di luar blok if)
+        }
+
+        // Contoh dengan let
+        function testLet() {
+            if (true) {
+                let b = 20;  // let memiliki block scope
+            }
+            console.log(b); // Error: b is not defined (karena let hanya bisa diakses di dalam blok if)
+        }
+
+        // Contoh dengan const
+        function testConst() {
+            if (true) {
+                const c = 30;  // const juga memiliki block scope
+            }
+            console.log(c); // Error: c is not defined (karena const hanya bisa diakses di dalam blok if)
+        }
+
+        testVar();
+        testLet();
+        testConst();
+
+    </script>
+</body>
+
+</html>
