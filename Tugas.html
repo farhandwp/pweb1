@@ -4,89 +4,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Latihan 04 - Daftar Dosen</title>
-    <link rel="stylesheet" href="Tugas.css">
+    <title>Galeri Foto Alumni UNIKU</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #4caf50;
+        }
+
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .gallery img {
+            width: 150px;
+            height: auto;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 1s;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            position: relative;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .modal img {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #333;
+        }
+    </style>
 </head>
 
 <body>
-    <font size="7">Fakultas Ilmu Komputer</font> <br>
-    <font size="5">Universitas Kuningan</font> <br>
-    <font size="3">
-        Alamat: Jl. Pramuka No.67, Purwawinangun,
-        Kec. Kuningan, Kabupaten Kuningan, Jawa Barat 45512</font>
-    <hr size="3">
-
-    <div class="search-bar">
-        <input type="text" id="searchInput" placeholder="Cari dosen berdasarkan nama atau homebase..."
-            oninput="filterTable()">
+    <h1>Galeri Foto Alumni UNIKU</h1>
+    <div class="gallery">
+        <img src="picture/Gambar WhatsApp 2024-10-10 pukul 08.49.03_0d1869cd.jpg" alt="Alumni 1">
+        <img src="picture/Silva Rahmawati.jpg" alt="Alumni 2">
+        <img src="picture/wawan setiawan.jpg" alt="Alumni 3">
     </div>
 
-    <table border="1" id="dosenTable">
-        <caption><strong>DAFTAR DOSEN</strong></caption>
-        <tr>
-            <th>No.</th>
-            <th>Nama</th>
-            <th>Homebase</th>
-            <th>Rumpun Keilmuan</th>
-        </tr>
-        <tr>
-            <td align="right">1.</td>
-            <td>Tito Sugiharto, M.Eng.</td>
-            <td>Teknik Informatika</td>
-            <td>Computer Engineering</td>
-        </tr>
-        <tr>
-            <td align="right">2.</td>
-            <td>Erik Kurniadi, M.Kom.</td>
-            <td>Sistem Informasi</td>
-            <td>Information System</td>
-        </tr>
-        <tr>
-            <td align="right">3.</td>
-            <td>Jerry D. Rahajaan, M.Sn.</td>
-            <td>Desain Komunikasi Visual</td>
-            <td>Seni, Desain, & Media</td>
-        </tr>
-        <tr>
-            <td align="right">4.</td>
-            <td>Panji Novantara, M.T.</td>
-            <td>Teknik Informatika</td>
-            <td>Computer Science</td>
-        </tr>
-        <tr>
-            <td align="right">5.</td>
-            <td>Panji Novantara, M.T.</td>
-            <td>Teknik Informatika</td>
-            <td>Teknik Sipil</td>
-        </tr>
-    </table>
-    <div class="no-results" id="noResults" style="display: none;">
-        Tidak ditemukan hasil.
+    <div class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <img id="modalImage" src="" alt="Modal Image">
+        </div>
     </div>
 
-    <script>
-        function filterTable() {
-            const input = document.getElementById('searchInput').value.toLowerCase();
-            const table = document.getElementById('dosenTable');
-            const rows = table.getElementsByTagName('tr');
-            let hasResults = false;
-
-            for (let i = 1; i < rows.length; i++) {
-                const cells = rows[i].getElementsByTagName('td');
-                const name = cells[1]?.textContent.toLowerCase() || '';
-                const homebase = cells[2]?.textContent.toLowerCase() || '';
-
-                if (name.includes(input) || homebase.includes(input)) {
-                    rows[i].style.display = '';
-                    hasResults = true;
-                } else {
-                    rows[i].style.display = 'none';
-                }
-            }
-
-            document.getElementById('noResults').style.display = hasResults ? 'none' : 'block';
-        }
-    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="Tugas.js"></script>
 </body>
 
 </html>
