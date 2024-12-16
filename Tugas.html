@@ -2,90 +2,144 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal Alumni - Lowongan Kerja</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Job Vacancy Management</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 
-<body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Portal Alumni</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item"><a class="nav-link" href="Latihan_06_01.html">Beranda</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Tentang Kami</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Acara</a></li>
-                <li class="nav-item"><a class="nav-link" href="bursa-kerja.html">Bursa Kerja</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Kontak</a></li>
-            </ul>
-        </div>
-    </nav>
+<body class="bg-light">
+  <div class="container mt-5">
+    <h1 class="text-center mb-4">Manajemen Lowongan Kerja</h1>
 
-    <!-- Header -->
-    <header class="jumbotron text-center bg-primary text-white mb-4">
-        <h1 class="display-4">Lowongan Kerja</h1>
-        <p class="lead">Temukan pekerjaan yang sesuai untuk alumni</p>
-    </header>
+    <!-- Form Tambah / Perbarui Lowongan -->
+    <form id="jobForm" class="mb-4">
+      <div class="mb-3">
+        <label for="posisi" class="form-label">Posisi</label>
+        <input type="text" class="form-control" id="posisi" required>
+      </div>
+      <div class="mb-3">
+        <label for="perusahaan" class="form-label">Perusahaan</label>
+        <input type="text" class="form-control" id="perusahaan" required>
+      </div>
+      <div class="mb-3">
+        <label for="lokasi" class="form-label">Lokasi</label>
+        <input type="text" class="form-control" id="lokasi" required>
+      </div>
+      <div class="mb-3">
+        <label for="gaji" class="form-label">Gaji</label>
+        <input type="text" class="form-control" id="gaji" required>
+      </div>
+      <input type="hidden" id="row">
+      <button type="submit" class="btn btn-primary">Simpan</button>
+      <button type="button" class="btn btn-secondary" id="resetForm">Reset</button>
+    </form>
 
-    <!-- Lowongan Kerja -->
-    <main class="container my-5">
-        <div class="row">
-            <!-- Lowongan 1 -->
-            <div class="col-md-6 mb-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">PT. TAH SUNG HUNG (TSH)</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Posisi: Operator produksi</h6>
-                        <p class="card-text"><strong>Deskripsi Pekerjaan:</strong> Membuat laporan pemasukan,
-                            pengeluaran produksi sepatu.</p>
-                        <p class="card-text"><strong>Kualifikasi:</strong> Lulusan SMP/SMA/SMK/Sederajat, Disiplin dan
-                            memiliki etos kerja yang bagus.</p>
-                        <p class="card-text"><strong>Lokasi:</strong> Berebes</p>
-                        <p class="card-text"><strong>Batas Pengiriman:</strong> 31 Desember 2024</p>
-                        <a href="#" class="btn btn-primary">Lihat Detail</a>
-                        <a href="#" class="btn btn-success">Lamar</a>
-                    </div>
-                </div>
-            </div>
+    <!-- Tabel Lowongan -->
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Posisi</th>
+          <th>Perusahaan</th>
+          <th>Lokasi</th>
+          <th>Gaji</th>
+          <th>Aksi</th>
+        </tr>
+      </thead>
+      <tbody id="jobTable"></tbody>
+    </table>
+  </div>
 
-            <!-- Lowongan 2 -->
-            <div class="col-md-6 mb-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">PT. SAYAP MAS UTAMA</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Posisi: Salesman</h6>
-                        <p class="card-text"><strong>Deskripsi Pekerjaan:</strong> Menjualkan berbagai produk dan
-                            mempromosikan produk</p>
-                        <p class="card-text"><strong>Kualifikasi:</strong> SMA/SMK/Sederajat, Bersedia ditempatkan di
-                            area Cirebon dan sekitarnya.</p>
-                        <p class="card-text"><strong>Lokasi:</strong> Cirebon</p>
-                        <p class="card-text"><strong>Batas Pengiriman:</strong> 06 september 2024</p>
-                        <a href="#" class="btn btn-primary">Lihat Detail</a>
-                        <a href="#" class="btn btn-success">Lamar</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <script>
+    const apiUrl = 'https://script.google.com/macros/s/AKfycbw93KSCR_XzPDV3FLpqzu3xykFWV0bXgEMcDC1zzdVx17CfXmJH1PwepxrBkt-0OVZO/exec';
 
-        <!-- Tambah lowongan lainnya -->
-        <div class="text-center mt-4">
-            <button class="btn btn-primary">Lihat Lebih Banyak Lowongan</button>
-        </div>
-    </main>
+    // Load data awal
+    async function loadJobs() {
+      try {
+        const response = await axios.get(`${apiUrl}?action=search&keyword=`);
+        const jobs = response.data.data;
+        const table = document.getElementById("jobTable");
+        table.innerHTML = "";
+        jobs.forEach((job, index) => {
+          const row = `<tr>
+            <td>${index + 1}</td>
+            <td>${job[0]}</td>
+            <td>${job[1]}</td>
+            <td>${job[2]}</td>
+            <td>${job[3]}</td>
+            <td>
+              <button class="btn btn-warning btn-sm" onclick="editJob(${index + 2})">Edit</button>
+              <button class="btn btn-danger btn-sm" onclick="deleteJob(${index + 2})">Hapus</button>
+            </td>
+          </tr>`;
+          table.innerHTML += row;
+        });
+      } catch (error) {
+        console.error("Error loading jobs:", error);
+        alert("Gagal memuat data. Silakan coba lagi.");
+      }
+    }
 
-    <!-- Footer -->
-    <footer class="bg-light text-center py-3">
-        <p>&copy; 2024 Program Studi Sistem Informasi, Universitas Kuningan. Hak cipta dilindungi.</p>
-    </footer>
+    // Tambah atau perbarui data
+    document.getElementById("jobForm").addEventListener("submit", async function (e) {
+      e.preventDefault();
+      const posisi = document.getElementById("posisi").value;
+      const perusahaan = document.getElementById("perusahaan").value;
+      const lokasi = document.getElementById("lokasi").value;
+      const gaji = document.getElementById("gaji").value;
+      const row = document.getElementById("row").value;
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+      try {
+        if (row) {
+          await axios.get(`${apiUrl}?action=update&row=${row}&posisi=${encodeURIComponent(posisi)}&perusahaan=${encodeURIComponent(perusahaan)}&lokasi=${encodeURIComponent(lokasi)}&gaji=${encodeURIComponent(gaji)}`);
+        } else {
+          await axios.get(`${apiUrl}?action=add&posisi=${encodeURIComponent(posisi)}&perusahaan=${encodeURIComponent(perusahaan)}&lokasi=${encodeURIComponent(lokasi)}&gaji=${encodeURIComponent(gaji)}`);
+        }
+        loadJobs();
+        this.reset();
+      } catch (error) {
+        console.error("Error saving job:", error);
+        alert("Gagal menyimpan data. Silakan coba lagi.");
+      }
+    });
+
+    // Hapus data
+    async function deleteJob(row) {
+      try {
+        await axios.get(`${apiUrl}?action=delete&row=${row}`);
+        loadJobs();
+      } catch (error) {
+        console.error("Error deleting job:", error);
+        alert("Gagal menghapus data. Silakan coba lagi.");
+      }
+    }
+
+    // Edit data
+    async function editJob(row) {
+      try {
+        const response = await axios.get(`${apiUrl}?action=search&keyword=`);
+        const job = response.data.data[row - 2];
+        document.getElementById("posisi").value = job[0];
+        document.getElementById("perusahaan").value = job[1];
+        document.getElementById("lokasi").value = job[2];
+        document.getElementById("gaji").value = job[3];
+        document.getElementById("row").value = row;
+      } catch (error) {
+        console.error("Error editing job:", error);
+        alert("Gagal memuat data untuk diedit.");
+      }
+    }
+
+    // Reset form
+    document.getElementById("resetForm").addEventListener("click", function () {
+      document.getElementById("jobForm").reset();
+      document.getElementById("row").value = "";
+    });
+
+    loadJobs();
+  </script>
 </body>
 
 </html>
